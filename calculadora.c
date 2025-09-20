@@ -1,185 +1,177 @@
-#include <stdio.h>
+#include <stdio.h> 
 #include <math.h>
-#include <locale.h> // Incluir a biblioteca locale.h para configurar o idioma
+#include <locale.h> 
 
-// Função para exibir o menu da calculadora
-void exibirMenu();
+void displayMenu();
 
-// Funções para cada operação da calculadora
-void adicao();
-void subtracao();
-void multiplicacao();
-void divisao();
-void raizQuadrada();
-void quadrado();
-void fatorial();
+void addition();
+void subtraction();
+void multiplication();
+void division();
+void squareRoot();
+void square();
+void factorial();
 
-// Função para limpar o buffer de entrada
-void limparBuffer();
+void clearBuffer();
 
 int main()
 {
-    setlocale(LC_ALL, "pt_PT"); // Configurar o idioma para Português de Portugal
-    int opcao;
+    setlocale(LC_ALL, "en_US");
+    int option;
     do
     {
-        // Exibir o menu e solicitar a escolha do usuário
-        exibirMenu();
-        printf("Escolha uma opção (1-8): ");
-        if (scanf("%d", &opcao) != 1)
+        displayMenu();
+        printf("Choose an option (1-8): ");
+        if (scanf("%d", &option) != 1)
         {
-            limparBuffer();
-            printf("Entrada inválida! Insira um número de 1 a 8.\n");
+            clearBuffer();
+            printf("Invalid input! Please enter a number from 1 to 8.\n");
             continue;
         }
-        // Executar a operação escolhida pelo usuário
-        switch (opcao)
+               switch (option)
         {
-            case 1: adicao(); break;
-            case 2: subtracao(); break;
-            case 3: multiplicacao(); break;
-            case 4: divisao(); break;
-            case 5: raizQuadrada(); break;
-            case 6: quadrado(); break;
-            case 7: fatorial(); break;
-            case 8: printf("Saindo da calculadora...\n"); break;
-            default: printf("Entrada inválida! Insira um número de 1 a 8.\n");
+            case 1: addition(); break;
+            case 2: subtraction(); break;
+            case 3: multiplication(); break;
+            case 4: division(); break;
+            case 5: squareRoot(); break;
+            case 6: square(); break;
+            case 7: factorial(); break;
+            case 8: printf("Exiting the calculator...\n"); break;
+            default: printf("Invalid input! Please enter a number from 1 to 8.\n");
         }
-    } while (opcao != 8); // Continuar até que a opção 8 (sair) seja escolhida
+    } while (option != 8);  
     return 0;
 }
 
-// Função para exibir o menu da calculadora
-void exibirMenu()
+void displayMenu()
 {
-    printf("\n====== Calculadora ======\n");
-    printf("1. Adição\n");
-    printf("2. Subtração\n");
-    printf("3. Multiplicação\n");
-    printf("4. Divisão\n");
-    printf("5. Raiz quadrada\n");
-    printf("6. Quadrado\n");
-    printf("7. Fatorial de qualquer número\n");
-    printf("8. Sair\n");
-    printf("=========================\n");
+    printf("\n====== Calculator ======\n");
+    printf("1. Addition\n");
+    printf("2. Subtraction\n");
+    printf("3. Multiplication\n");
+    printf("4. Division\n");
+    printf("5. Square root\n");
+    printf("6. Square\n");
+    printf("7. Factorial of any number\n");
+    printf("8. Exit\n");
+    printf("========================\n");
 }
 
-// Implementação das operações matemáticas
 
-void adicao()
+void addition()
 {
     double num1, num2;
-    printf("Insira dois números para adicionar: ");
+    printf("Enter two numbers to add: ");
     if (scanf("%lf %lf", &num1, &num2) != 2)
     {
-        limparBuffer();
-        printf("Entrada inválida! Tente novamente.\n");
+        clearBuffer();
+        printf("Invalid input! Try again.\n");
         return;
     }
-    printf("Resultado: %.2lf\n", num1 + num2);
-}
-// Implementação similar às outras funções
-// As funções seguintes têm um padrão similar
-void subtracao()
-{
-    double num1, num2;
-    printf("Insira dois números para subtrair: ");
-    if (scanf("%lf %lf", &num1, &num2) != 2)
-    {
-        limparBuffer();
-        printf("Entrada inválida! Tente novamente.\n");
-        return;
-    }
-    printf("Resultado: %.2lf\n", num1 - num2);
+    printf("Result: %.2lf\n", num1 + num2);
 }
 
-void multiplicacao()
+void subtraction()
 {
     double num1, num2;
-    printf("Insira dois números para multiplicar: ");
+    printf("Enter two numbers to subtract: ");
     if (scanf("%lf %lf", &num1, &num2) != 2)
     {
-        limparBuffer();
-        printf("Entrada inválida! Tente novamente.\n");
+        clearBuffer();
+        printf("Invalid input! Try again.\n");
         return;
     }
-    printf("Resultado: %.2lf\n", num1 * num2);
+    printf("Result: %.2lf\n", num1 - num2);
 }
 
-void divisao()
+void multiplication()
 {
     double num1, num2;
-    printf("Insira dois números para dividir: ");
+    printf("Enter two numbers to multiply: ");
     if (scanf("%lf %lf", &num1, &num2) != 2)
     {
-        limparBuffer();
-        printf("Entrada inválida! Tente novamente.\n");
+        clearBuffer();
+        printf("Invalid input! Try again.\n");
+        return;
+    }
+    printf("Result: %.2lf\n", num1 * num2);
+}
+
+void division()
+{
+    double num1, num2;
+    printf("Enter two numbers to divide: ");
+    if (scanf("%lf %lf", &num1, &num2) != 2)
+    {
+        clearBuffer();
+        printf("Invalid input! Try again.\n");
         return;
     }
     if (num2 == 0)
     {
-        printf("Erro: Divisão por zero não é permitida!\n");
+        printf("Error: Division by zero is not allowed!\n");
         return;
     }
-    printf("Resultado: %.2lf\n", num1 / num2);
+    printf("Result: %.2lf\n", num1 / num2);
 }
 
-void raizQuadrada()
+void squareRoot()
 {
     double num;
-    printf("Insira um número para calcular a raiz quadrada: ");
+    printf("Enter a number to calculate its square root: ");
     if (scanf("%lf", &num) != 1)
     {
-        limparBuffer();
-        printf("Entrada inválida! Tente novamente.\n");
+        clearBuffer();
+        printf("Invalid input! Try again.\n");
         return;
     }
     if (num < 0)
     {
-        printf("Erro: Raiz quadrada de número negativo não é permitida!\n");
+        printf("Error: Square root of a negative number is not allowed!\n");
         return;
     }
-    printf("Resultado: %.2lf\n", sqrt(num));
+    printf("Result: %.2lf\n", sqrt(num));
 }
 
-void quadrado()
+void square()
 {
     double num;
-    printf("Insira um número para calcular o quadrado: ");
+    printf("Enter a number to calculate its square: ");
     if (scanf("%lf", &num) != 1)
     {
-        limparBuffer();
-        printf("Entrada inválida! Tente novamente.\n");
+        clearBuffer();
+        printf("Invalid input! Try again.\n");
         return;
     }
-    printf("Resultado: %.2lf\n", num * num);
+    printf("Result: %.2lf\n", num * num);
 }
 
-void fatorial()
+void factorial()
 {
     int num;
-    printf("Insira um número para calcular o fatorial: ");
+    printf("Enter a number to calculate its factorial: ");
     if (scanf("%d", &num) != 1)
     {
-        limparBuffer();
-        printf("Entrada inválida! Tente novamente.\n");
+        clearBuffer();
+        printf("Invalid input! Try again.\n");
         return;
     }
     if (num < 0)
     {
-        printf("Erro: Fatorial de número negativo não é permitida!\n");
+        printf("Error: Factorial of a negative number is not allowed!\n");
         return;
     }
-    unsigned long long resultado = 1;
+    unsigned long long result = 1;
     for (int i = 1; i <= num; ++i)
     {
-        resultado *= i;
+        result *= i;
     }
-    printf("Resultado: %llu\n", resultado);
+    printf("Result: %llu\n", result);
 }
-// Função para limpar o buffer de entrada
-void limparBuffer()
+
+void clearBuffer()
 {
     int c;
-    while ((c = getchar()) != '\n' && c != EOF) { }  // Limpeza do buffer de entrada
+    while ((c = getchar()) != '\n' && c != EOF) { } 
 }
